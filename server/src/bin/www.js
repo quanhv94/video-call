@@ -6,8 +6,7 @@
 
 import '@babel/polyfill';
 import debugLib from 'debug';
-import https from 'https';
-import fs from 'fs';
+import http from 'http';
 import app from '../app';
 import setupSocket from '../socket';
 
@@ -23,10 +22,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-const server = https.createServer({
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-}, app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
